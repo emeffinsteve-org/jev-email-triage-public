@@ -1,0 +1,31 @@
+# CI: offline checks on every push to main and every pull request.
+# No network, no secrets, no Gmail: syntax checks, JSON validation, and the
+# offline unit tests for the deployed pipeline's pure functions.
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+      - run: node --version
+      - name: Syntax-check every script
+        run: |
+          fail=0
+          while IFS= read -r f; do
+            node --check "$f" || fail=1
+          done < <(find deployed -name '*.mjs' 2>/dev/null)
+          exit $fail
+      - name: Validate JSON configs
+        run: node -e "for (const f of ['deployed/config.json','deployed/questions.json']) JSON.parse(require('fs').readFileSync(f,'utf8')); console.log('JSON OK')"
+      - name: Offline unit tests
+        run: node --test deployed/test/pipeline.test.mjs
