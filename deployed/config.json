@@ -1,0 +1,39 @@
+{
+  "label_name": "BULLSHIT",
+  "model": "jev-latest",
+  "sender_values": {
+    "company_automated": -0.5,
+    "person_for_company": 0.3,
+    "person_private": 1.0
+  },
+  "threshold": 0.3,
+  "tier_values": {
+    "primary": 0.5,
+    "work": 0.2,
+    "other": -0.2
+  },
+  "topic_values": {
+    "bills": 0.8,
+    "community_news": 0.1,
+    "conversation": 1.0,
+    "feature_update": -0.2,
+    "job_recruiting": 0.7,
+    "marketing": -0.8,
+    "sales_promo": -0.7,
+    "security_notice": 0.9,
+    "support_from_me": 0.9,
+    "support_to_me": 0.8,
+    "transactional": 0.1
+  },
+  "weights": {
+    "address_tier": 0.1,
+    "announces_event": 0.1,
+    "is_compound": 0.05,
+    "is_scam": -0.15,
+    "is_stale": -0.1,
+    "sender": 0.15,
+    "thread": 0.05,
+    "topic": 0.25,
+    "urgency": 0.3
+  }
+}
