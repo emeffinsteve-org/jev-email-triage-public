@@ -1,0 +1,80 @@
+{
+  "announces_event": {
+    "criteria": {
+      "false": "No event announced",
+      "true": "Announces an event worth knowing about"
+    },
+    "instructions": "Does `email` announce an event, gathering, meeting, or date-bound occasion the recipient might want to attend or be aware of \u2014 a church event, concert, webinar, meetup, appointment window? Check against `email.dates_mentioned`: a bare date with no event attached (copyright notice, '30-day guarantee') does not count.",
+    "type": "noul"
+  },
+  "is_compound": {
+    "criteria": {
+      "false": "Single focused message",
+      "true": "Multiple distinct topics"
+    },
+    "instructions": "Does `email` contain more than one distinct topic or request \u2014 e.g. a newsletter that also asks for a reply, or an FYI bundled with an action item? A single focused message is not compound.",
+    "type": "noul"
+  },
+  "is_scam": {
+    "criteria": {
+      "false": "Legitimate mail",
+      "true": "Deceptive or unsolicited junk"
+    },
+    "instructions": "Is `email` a scam, phishing attempt, or unsolicited spam?",
+    "type": "noul"
+  },
+  "is_stale": {
+    "criteria": {
+      "false": "Still relevant",
+      "true": "Usefulness has passed"
+    },
+    "instructions": "Has the usefulness of `email` already passed (expired sale, used one-time code, past event, delivered package)? Use `email.received` and `email.dates_mentioned`.",
+    "type": "noul"
+  },
+  "sender_type": {
+    "criteria": {
+      "company_automated": {
+        "covers": "Sent by a system: marketing blasts, order/shipping notices, TOS updates, feature announcements, security alerts, info@/noreply@ senders. One-click unsubscribe is a near-certain marker.",
+        "not_for": "A human's reply, even a templated one."
+      },
+      "person_for_company": {
+        "covers": "A real person writing on behalf of a business: support agent reply, sales rep's 1:1 outreach, founder update. Often light HTML plus an unsubscribe link because it went through HubSpot or similar \u2014 the formatting is the tell, not the voice.",
+        "not_for": "Fully automated mail with no human author."
+      },
+      "person_private": {
+        "covers": "An individual writing personally: friend, colleague, family, a real 1:1 conversation. Usually plain text, no unsubscribe link. Free providers (gmail, icloud, outlook, hotmail, yahoo, aol) lean this way \u2014 but a custom domain does not rule it out.",
+        "not_for": "Anything sent through a marketing or sales platform, even if signed by a person."
+      }
+    },
+    "instructions": "Who wrote and sent `email`? Consider `email.from`, `email.was_html`, `email.has_unsubscribe_link`, and `email.one_click_unsubscribe` together \u2014 no single field decides this.",
+    "type": "choice"
+  },
+  "topic": {
+    "criteria": {
+      "bills": "Correspondence about a bill: due, paid, failed, autopay \u2014 personal or business.",
+      "community_news": "Community or organization news: church, school, club, HOA. Not a conversation, not selling anything.",
+      "conversation": "Friends, family, or colleagues having a genuine conversation.",
+      "feature_update": "New content or feature announcement: a new season launching, new features added, product news.",
+      "job_recruiting": "Job-search related: recruiter outreach, job alerts, application updates.",
+      "marketing": "Marketing email: newsletter, list blast, brand content with no specific offer.",
+      "sales_promo": "A sales or promotional offer: deal, discount, upsell \u2014 whether or not the recipient is a customer.",
+      "security_notice": "Security or account notification: password changed, login alert, terms or policy update.",
+      "support_from_me": "Someone asking the recipient for help or support: a client, customer, or colleague needing something FROM them.",
+      "support_to_me": "Customer support being provided TO the recipient: a reply to their ticket or request, an agent helping them.",
+      "transactional": "Transactional record: receipt, order or shipping confirmation, statement, booking confirmation. Proof of something, not a pitch."
+    },
+    "instructions": "What is `email` about? Pick the single best fit. Use `email.sender_relationship` when present.",
+    "type": "choice"
+  },
+  "urgency": {
+    "criteria": [
+      "No urgency: promotions, newsletters, marketing, or FYI with nothing at stake and nothing to do.",
+      "Low: informational notice about the recipient's accounts or services; worth knowing, nothing to do, nothing expiring. One-time security/verification/login codes land here: by the time the ~15-minute triage delay elapses, the recipient has already used the code or it has expired \u2014 never score them above Low.",
+      "Moderate: the recipient is expected to reply or act, but no deadline is stated or implied.",
+      "High: action required by a deadline; a payment is upcoming and not automatic; a depended-on service is degraded; an appointment needs confirmation.",
+      "Critical: money lost or at immediate risk (failed, overdue, or fraudulent payment); a device, account, service, or server is down; a security incident needs action now."
+    ],
+    "instructions": "How urgent is `email` for the recipient? Score the HIGHEST level that applies, combining what is at stake (money, access, service), whether the recipient must act, and whether there is a deadline. A notice about something critical scores by its stakes even if written as a plain FYI. Use `email.dates_mentioned` and `email.received` for deadline reasoning. One-time security/verification/login codes are never urgent: email triage runs on a ~15-minute delay, so by read time the recipient has already used the code or it has expired. Score such mail Low at most.",
+    "type": "score"
+  }
+}
