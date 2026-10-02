@@ -83,3 +83,5 @@ the Gmail script until it reports "0 triaged".
 ## License
 
 No license file yet — all rights reserved until the author adds one.
+
+<!-- copilot review probe -->
