@@ -21,10 +21,10 @@ export function addressTier(toList) {
 }
 
 // NOTE (sanitized): the original profile described a real person — name,
-// addresses, family members, employer, job search. Redacted. Write your own:
+// addresses, family, employer, and other personal details. Redacted. Write your own:
 // the sharper this profile, the better the triage. Tell the model who you
 // are, which addresses are yours, and what kinds of mail matter to you.
-const RECIPIENT_PROFILE = `Jane Doe. Primary addresses: you@example.com (personal) and you@work.example.com (work) — mail here usually deserves attention. you@second-job.example.com is a secondary work address. Per-service aliases (e.g. via SimpleLogin) usually carry automated mail.`;
+const RECIPIENT_PROFILE = `Jane Doe. Primary addresses: you@example.com (personal) and you@work.example.com (work) — mail here usually deserves attention. you@second-job.example.com is a secondary work address. Per-service aliases (e.g. via an alias service) usually carry automated mail.`;
 
 export function buildState(msg, { threadMessageCount = 1, senderMap = null, now = new Date() } = {}) {
   const headers = msg.payload?.headers ?? [];
