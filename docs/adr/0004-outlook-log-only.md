@@ -11,8 +11,7 @@ superseded-by: none
 
 ## Context and Problem Statement
 
-The Outlook pipeline (`triage-outlook.mjs`) triages the owner's Mosaic
-Wadsworth mailbox (`you@work.example.com`) with the same battery and
+The Outlook pipeline (`triage-outlook.mjs`) triages the owner's Outlook mailbox (`you@work.example.com`) with the same battery and
 composite as Gmail. The question: what happens to mail Jev judges BULLSHIT
 there?
 
@@ -32,16 +31,16 @@ there?
 
 ## Decision
 
-Log-only. Surfaced Outlook mail reaches the owner through the same Email
-Monitoring chat; everything else is recorded in the decision log and left
+Log-only. Surfaced Outlook mail reaches the owner through the same alert
+destination; everything else is recorded in the decision log and left
 untouched in the mailbox.
 
 ## Consequences
 
 * Good: zero risk of the connector doing something unexpected to the
-  church mailbox.
+  Outlook mailbox.
 * Bad: no visual distinction in Outlook between triaged and untriaged mail;
   the processed-id watermark (`state/processed-outlook.json`) is the only
   record.
 * If the connector ever gains label writes, the Outlook side gets the same
-  BULLSHIT labeling as Gmail (see `ideas/roadmap.md`).
+  BULLSHIT labeling as Gmail.
