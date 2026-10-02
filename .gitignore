@@ -1,0 +1,54 @@
+# --- OS junk ---
+.DS_Store
+**/.DS_Store
+Thumbs.db
+
+# --- Editors ---
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+
+# --- Dependencies ---
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# --- Build artifacts ---
+dist/
+build/
+coverage/
+*.tsbuildinfo
+DerivedData/
+.build/
+.eslintcache
+
+# ---------------------------------------------------------------------------
+# SECRETS — DO NOT REMOVE these lines.
+#
+# Git history is permanent: once a secret is pushed, "removing" it means
+# rewriting history, forcing GitHub cache purges, AND rotating the credential
+# anyway. Keys, API tokens, and certificates stay on disk locally — they are
+# simply never committed. `.env.example` (placeholders only) IS tracked, as
+# the record of which variables a working copy needs.
+# ---------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+secrets/
+credentials*.json
+
+# --- Per-machine Claude Code settings (shared settings.json IS tracked) ---
+.claude/settings.local.json
+
+# --- jev-email-triage runtime data (real mail metadata; never commit) ---
+deployed/state/
+deployed/logs/
+deployed/outbox/
+data/
+*.db
