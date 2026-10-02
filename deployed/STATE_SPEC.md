@@ -7,7 +7,7 @@ Gmail API — no LLM extraction. Every field is read by at least one question.
 {
   "today": "Wednesday, September 30, 2026",
 
-  "recipient_profile": "<!-- SANITIZED: the original listed the author's real addresses, per-service alias patterns, and household members. Redacted for public release — configure your own profile (see lib/state.mjs). Example shape: name, primary addresses with roles, secondary addresses, alias conventions. -->"
+  "recipient_profile": "<!-- SANITIZED: the original listed the author's real addresses, alias patterns, and household members. Redacted for public release — configure your own profile (see lib/state.mjs). Example shape: name, primary addresses with roles, secondary addresses, alias conventions. -->"
 
   "email": {
     "from": { "name": "Example Sender", "address": "sender@example.com" },
